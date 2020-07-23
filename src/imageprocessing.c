@@ -82,11 +82,11 @@ void salvar_imagem(char *nome_do_arquivo, imagem *I) {
 
 
 void filtro(imagem *I, int N) {
-  unsigned int media_r, media_g, media_b;
+  int media_r, media_g, media_b;
   media_r = media_g = media_b = 0;
 
-  for (unsigned int i=0; i<(I->width); i++) {
-    for (unsigned int j=0; j<(I->height); j++) {
+  for (int i=0; i<(I->width); i++) {
+    for (int j=0; j<(I->height); j++) {
         media_r = media_g = media_b = 0;
 
         for (int k=-N; k<=N; k++) {
