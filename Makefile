@@ -1,3 +1,9 @@
-
+#Makefile
 main:
-	gcc -omain main.c imageprocessing.c -I./ -lfreeimage
+	gcc -omain src/main.c src/imageprocessing.c -I./ -lfreeimage
+	./main
+	xdg-open cachorro-out.jpg
+
+clear:
+	rm main
+	rm cachorro-out.jpg
