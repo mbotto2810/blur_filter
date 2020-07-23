@@ -79,3 +79,35 @@ void salvar_imagem(char *nome_do_arquivo, imagem *I) {
 
   FreeImage_Save(FIF_JPEG, bitmapOut, nome_do_arquivo, JPEG_DEFAULT);
 }
+
+
+void filtro(imagem *I, int N) {
+  unsigned int media_r, media_g, media_b;
+  media_r = media_g = media_b = 0;
+
+  for (unsigned int i=0; i<(I->width); i++) {
+    for (unsigned int j=0; j<(I->height); j++) {
+        media_r = media_g = media_b = 0;
+
+        for (int k=-N; k<=N; k++) {
+            for (int z=-N; z<=N; z++) {
+                if ( (((j+k)*I->width + i + z) >= 0) && (((j+k)*I->width + i + z) <= ((I->width)*(I->height-1)+I->width-1)) ) {
+
+                    /* Media no canal R */
+                    media_r += I->r[(j+k)*I->width + i + z] / ((2*N+1)*(2*N+1));
+                    /* Media no canal G */
+                    media_g += I->g[(j+k)*I->width + i + z] / ((2*N+1)*(2*N+1));
+                    /* Media no canal B */
+                    media_b += I->b[(j+k)*I->width + i + z] / ((2*N+1)*(2*N+1));
+
+                    }
+                }
+            }
+
+        I->r[j*I->width + i] = media_r;
+        I->g[j*I->width + i] = media_g;
+        I->b[j*I->width + i] = media_b;
+
+        }
+    }
+}
