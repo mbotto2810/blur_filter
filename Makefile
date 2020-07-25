@@ -13,7 +13,7 @@ test:
 
 git:
 	git commit -am 'auto'
-	git push
+	git push origin master
 
 clear:
 	rm main
