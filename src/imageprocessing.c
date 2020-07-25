@@ -83,30 +83,31 @@ void salvar_imagem(char *nome_do_arquivo, imagem *I) {
 
 void filtro(imagem *I, int N) {
   int media_r, media_g, media_b;
-  media_r = media_g = media_b = 0;
-
+  int contagem;
   for (int i=0; i<(I->width); i++) {
     for (int j=0; j<(I->height); j++) {
-        media_r = media_g = media_b = 0;
-
+        media_r = 0;
+        media_g = 0;
+        media_b = 0;
+        contagem = 0;
         for (int k=-N; k<=N; k++) {
             for (int z=-N; z<=N; z++) {
                 if ( (((j+k)*I->width + i + z) >= 0) && (((j+k)*I->width + i + z) <= ((I->width)*(I->height-1)+I->width-1)) ) {
-
+                    contagem++;
                     /* Media no canal R */
-                    media_r += I->r[(j+k)*I->width + i + z] / ((2*N+1)*(2*N+1));
+                    media_r = media_r + I->r[(j+k)*I->width + i + z] ;
                     /* Media no canal G */
-                    media_g += I->g[(j+k)*I->width + i + z] / ((2*N+1)*(2*N+1));
+                    media_g = media_g + I->g[(j+k)*I->width + i + z] ;
                     /* Media no canal B */
-                    media_b += I->b[(j+k)*I->width + i + z] / ((2*N+1)*(2*N+1));
+                    media_b = media_b + I->b[(j+k)*I->width + i + z] ;
 
                     }
                 }
             }
 
-        I->r[j*I->width + i] = media_r;
-        I->g[j*I->width + i] = media_g;
-        I->b[j*I->width + i] = media_b;
+        I->r[j*I->width + i] = media_r/contagem;
+        I->g[j*I->width + i] = media_g/contagem;
+        I->b[j*I->width + i] = media_b/contagem;
 
         }
     }
