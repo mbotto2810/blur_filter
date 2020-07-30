@@ -2,12 +2,20 @@
 simples:
 	gcc -omain src/main.c src/imageprocessing.c -I./ -lfreeimage
 	./main
-	xdg-open cachorro-out.jpg
-	xdg-open data/cachorro.jpg
-
-thread:
+	xdg-open out.jpg
+	xdg-open data/lena.jpg
 
 process:
+	gcc -omain src/main_process.c src/imageprocessing.c -I./ -lfreeimage
+	./main
+	xdg-open out.jpg
+	xdg-open data/lena.jpg
+
+thread:
+	gcc -omain src/main_thread.c src/imageprocessing.c -I./ -lfreeimage
+	./main
+	xdg-open out.jpg
+	xdg-open data/lena.jpg
 
 test:
 
