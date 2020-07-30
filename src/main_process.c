@@ -25,8 +25,7 @@ int main() {
   for (int j=0; j<n_processos; j++) {
       pid[j] = fork();
       if (pid[j]==0) {
-          printf("estou no processo %d\n",j);
-          multifiltro(img, N, j);
+          filtro(img, N, j, 1);
           salvar_imagem("out.jpg", img);
       }
   }
