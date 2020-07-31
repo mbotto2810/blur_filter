@@ -17,11 +17,10 @@ void* filtro_thread(void *arg) {
 }
 
 int main() {
+    pthread_t threads[n_threads];
+    int threads_id[n_threads];
 
-  pthread_t threads[n_threads];
-  int threads_id[n_threads];
-
-  img = abrir_imagem("data/lena.jpg");
+    img = abrir_imagem("data/lena.jpg");
 
     //Identifica threads
     for (int j=0 ; j<n_threads ; j++) {
@@ -38,7 +37,7 @@ int main() {
        pthread_join(threads[j],NULL);
     }
 
-  salvar_imagem("out.jpg", &img);
-  liberar_imagem(&img);
-  return 0;
+    salvar_imagem("out.jpg", &img);
+    liberar_imagem(&img);
+    return 0;
 }

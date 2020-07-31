@@ -8,9 +8,11 @@
 
 /*
 imagem abrir_imagem(char *nome_do_arquivo);
-void salvar_imagem(char *nome_do_arquivo);
+void salvar_imagem(char *nome_do_arquivo, imagem *I);
 void liberar_imagem(imagem *i);
- */
+void filtro(imagem *I, int N);
+void multi_filtro(imagem *I, int N, int n);
+*/
 
 imagem abrir_imagem(char *nome_do_arquivo) {
   FIBITMAP *bitmapIn;
@@ -85,29 +87,28 @@ void filtro(imagem *I, int N) {
       int media_r, media_g, media_b;
       int contagem;
       for (int i=0; i<(I->width); i++) {
-        for (int j=0; j<(I->height); j++) {
-            media_r = 0;
-            media_g = 0;
-            media_b = 0;
-            contagem = 0;
-            for (int k=-N; k<=N; k++) {
-                for (int z=-N; z<=N; z++) {
-                    if ( (((j+k)*I->width + i + z) >= 0) && (((j+k)*I->width + i + z) <= ((I->width)*(I->height-1)+I->width-1)) ) {
-                        contagem++;
-                        /* Media no canal R */
-                        media_r = media_r + I->r[(j+k)*I->width + i + z] ;
-                        /* Media no canal G */
-                        media_g = media_g + I->g[(j+k)*I->width + i + z] ;
-                        /* Media no canal B */
-                        media_b = media_b + I->b[(j+k)*I->width + i + z] ;
-
+            for (int j=0; j<(I->height); j++) {
+                media_r = 0;
+                media_g = 0;
+                media_b = 0;
+                contagem = 0;
+                for (int k=-N; k<=N; k++) {
+                    for (int z=-N; z<=N; z++) {
+                        if ( (((j+k)*I->width + i + z) >= 0) && (((j+k)*I->width + i + z) <= ((I->width)*(I->height-1)+I->width-1)) ) {
+                            contagem++;
+                            /* Media no canal R */
+                            media_r = media_r + I->r[(j+k)*I->width + i + z] ;
+                            /* Media no canal G */
+                            media_g = media_g + I->g[(j+k)*I->width + i + z] ;
+                            /* Media no canal B */
+                            media_b = media_b + I->b[(j+k)*I->width + i + z] ;
                         }
                     }
                 }
 
-            I->r[j*I->width + i] = media_r/contagem;
-            I->g[j*I->width + i] = media_g/contagem;
-            I->b[j*I->width + i] = media_b/contagem;
+                I->r[j*I->width + i] = media_r/contagem;
+                I->g[j*I->width + i] = media_g/contagem;
+                I->b[j*I->width + i] = media_b/contagem;
 
             }
         }
@@ -175,5 +176,4 @@ void multi_filtro(imagem *I, int N, int n) {
                     }
                 }
             }
-
     }

@@ -6,13 +6,13 @@ simples:
 	xdg-open data/lena.jpg
 
 process:
-	gcc -omain src/main_process.c src/imageprocessing.c -I./ -lfreeimage
+	gcc -omain src/process.c src/imageprocessing.c -I./ -lfreeimage
 	./main
 	xdg-open out.jpg
 	xdg-open data/lena.jpg
 
 thread:
-	gcc -lpthread -omain src/main_thread.c src/imageprocessing.c -I./ -lfreeimage
+	gcc -lpthread -omain src/thread.c src/imageprocessing.c -I./ -lfreeimage
 	./main
 	xdg-open out.jpg
 	xdg-open data/lena.jpg
