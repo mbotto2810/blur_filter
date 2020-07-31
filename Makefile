@@ -12,7 +12,7 @@ process:
 	xdg-open data/lena.jpg
 
 thread:
-	gcc -omain src/main_thread.c src/imageprocessing.c -I./ -lfreeimage
+	gcc -lpthread -omain src/main_thread.c src/imageprocessing.c -I./ -lfreeimage
 	./main
 	xdg-open out.jpg
 	xdg-open data/lena.jpg

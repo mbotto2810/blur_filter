@@ -81,8 +81,7 @@ void salvar_imagem(char *nome_do_arquivo, imagem *I) {
 }
 
 
-void filtro(imagem *I, int N, int n, int modo) {
-    if (modo == 0) {
+void filtro(imagem *I, int N) {
       int media_r, media_g, media_b;
       int contagem;
       for (int i=0; i<(I->width); i++) {
@@ -113,7 +112,8 @@ void filtro(imagem *I, int N, int n, int modo) {
             }
         }
     }
-    if (modo ==1) {
+
+void multi_filtro(imagem *I, int N, int n) {
           if (n%3==0) {
               int media_r;
               int contagem_r;
@@ -175,8 +175,5 @@ void filtro(imagem *I, int N, int n, int modo) {
                     }
                 }
             }
-        }
-    if (modo == 2) {
 
     }
-}

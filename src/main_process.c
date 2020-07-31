@@ -7,7 +7,7 @@
 #include <sys/mman.h>
 #include <unistd.h> /* fork() */
 
-#define N 5
+#define N 10
 #define n_processos 3
 
 int main() {
@@ -25,7 +25,7 @@ int main() {
   for (int j=0; j<n_processos; j++) {
       pid[j] = fork();
       if (pid[j]==0) {
-          filtro(img, N, j, 1);
+          multi_filtro(img, N, j);
           salvar_imagem("out.jpg", img);
       }
   }
