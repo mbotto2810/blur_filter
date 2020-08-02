@@ -26,14 +26,13 @@ int main() {
         pid[i] = fork();
         if (pid[i]==0) {
             multi_filtro(img, N, i);
-            exit(0);
+            salvar_imagem("out.jpg", img);
         }
     }
 
     for (int i=0; i<n_processos; i++) {
         waitpid(pid[i], NULL, 0);
     }
-    salvar_imagem("out.jpg", img);
     liberar_imagem(img);
     return 0;
 }

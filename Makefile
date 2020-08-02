@@ -2,22 +2,23 @@
 simples:
 	gcc -omain src/main.c src/imageprocessing.c -I./ -lfreeimage
 	./main
-	xdg-open out.jpg
-	xdg-open data/lena.jpg
+	#xdg-open out.jpg
+	#xdg-open data/lena.jpg
 
 process:
 	gcc -omain src/process.c src/imageprocessing.c -I./ -lfreeimage
 	./main
-	xdg-open out.jpg
-	xdg-open data/lena.jpg
+	#xdg-open out.jpg
+	#xdg-open data/lena.jpg
 
-thread:
+threads:
 	gcc -lpthread -omain src/thread.c src/imageprocessing.c -I./ -lfreeimage
 	./main
-	xdg-open out.jpg
-	xdg-open data/lena.jpg
+	#xdg-open out.jpg
+	#xdg-open data/lena.jpg
 
 test:
+	./tests.sh
 
 git:
 	git commit -am 'auto'
@@ -25,4 +26,4 @@ git:
 
 clear:
 	rm main
-	rm cachorro-out.jpg
+	rm out.jpg
