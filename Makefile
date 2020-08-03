@@ -27,3 +27,5 @@ git:
 clear:
 	rm main
 	rm out.jpg
+	rm doc/*.png doc/*.txt doc/*.dat doc/*.log
+	rm data/out.jpg
