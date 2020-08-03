@@ -2,7 +2,7 @@
 
 make -s threads
 cp out.jpg data/out.jpg
-make -s clear
+rm ./main out.jpg
 
 echo "Iniciando testes para uma linha de execucao"
 
@@ -112,7 +112,7 @@ set xlabel "Tentativa";
 set ylabel "Tempo";
 set fit quiet; set terminal png;
 set boxwidth 0.5;
-plot "user_processos.dat" with points notitle' >> doc/user_processos.png
+plot "doc/user_processos.dat" with points notitle' >> doc/user_processos.png
 gnuplot -p -e 'set print "doc/user_processos.log";
 stats "doc/user_processos.dat" nooutput;
 print "Media do user time executando em multiprocessos:";
@@ -163,7 +163,7 @@ set ylabel "Tempo";
 set fit quiet;
 set terminal png;
 set boxwidth 0.5;
-plot "sys_processos.dat" with points notitle' >> doc/sys_processos.png
+plot "doc/sys_processos.dat" with points notitle' >> doc/sys_processos.png
 gnuplot -p -e 'set print "doc/sys_processos.log";
 stats "doc/sys_processos.dat" nooutput;
 print "Media do sys time executando em multiprocessos:";
@@ -188,3 +188,7 @@ print STATS_stddev_err'
 
 
 ##########################################################
+
+pdflatex doc/template.tex resultados.pdf
+rm template.log template.aux
+xdg-open resultados.pdf
