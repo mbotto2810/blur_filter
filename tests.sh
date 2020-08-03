@@ -189,6 +189,7 @@ print STATS_stddev_err'
 
 ##########################################################
 
-pdflatex doc/template.tex resultados.pdf
+pdflatex doc/template.tex
 rm template.log template.aux
+mv template.pdf resultados.pdf
 xdg-open resultados.pdf
