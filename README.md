@@ -4,3 +4,4 @@ Dependencias:
   *pdflatex
   *gnuplot
   *time
+  *Algum leitor de PDF (para xdg-open)
