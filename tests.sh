@@ -102,9 +102,9 @@ set boxwidth 0.5;
 plot "doc/user_simples.dat" with points notitle' >> doc/user_simples.png
 gnuplot -p -e 'set print "doc/user_simples.log";
 stats "doc/user_simples.dat" nooutput;
-print "Media do user time executando em multithreads:";
+print "Media do user time executando em uma linha de execucao:";
 print STATS_mean;
-print "Desvio padrao do user time executando em multithreads:";
+print "Desvio padrao do user time executando em uma linha de execucao:";
 print STATS_stddev_err'
 
 gnuplot -p -e 'set title "Plot de user time de multiprocessos";
@@ -149,6 +149,13 @@ set fit quiet;
 set terminal png;
 set boxwidth 0.5;
 plot "doc/sys_simples.dat" with points notitle' >> doc/sys_simples.png
+gnuplot -p -e 'set print "doc/sys_simples.log";
+stats "doc/sys_simples.dat" nooutput;
+print "Media do sys time executando em uma linha de execucao:";
+print STATS_mean;
+print "Desvio padrao do sys time executando em uma linha de execucao:";
+print STATS_stddev_err'
+
 
 gnuplot -p -e 'set title "Plot de sys time de multiprocessos";
 set xlabel "Tentativa";
@@ -157,6 +164,13 @@ set fit quiet;
 set terminal png;
 set boxwidth 0.5;
 plot "sys_processos.dat" with points notitle' >> doc/sys_processos.png
+gnuplot -p -e 'set print "doc/sys_processos.log";
+stats "doc/sys_processos.dat" nooutput;
+print "Media do sys time executando em multiprocessos:";
+print STATS_mean;
+print "Desvio padrao do sys time executando em multiprocessos:";
+print STATS_stddev_err'
+
 
 gnuplot -p -e 'set title "Plot de sys time de multithreads";
 set xlabel "Tentativa";
@@ -165,3 +179,12 @@ set fit quiet;
 set terminal png;
 set boxwidth 0.5;
 plot "doc/sys_threads.dat" with points notitle' >> doc/sys_threads.png
+gnuplot -p -e 'set print "doc/sys_threads.log";
+stats "doc/sys_threads.dat" nooutput;
+print "Media do sys time executando em multithreads:";
+print STATS_mean;
+print "Desvio padrao do sys time executando em multithreads:";
+print STATS_stddev_err'
+
+
+##########################################################
