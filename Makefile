@@ -8,8 +8,8 @@ simples:
 process:
 	gcc -omain src/process.c src/imageprocessing.c -I./ -lfreeimage
 	./main
-	#xdg-open out.jpg
-	#xdg-open data/lena.jpg
+	xdg-open out.jpg
+	xdg-open data/lena.jpg
 
 threads:
 	gcc -lpthread -omain src/thread.c src/imageprocessing.c -I./ -lfreeimage

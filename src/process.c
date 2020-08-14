@@ -19,20 +19,22 @@ int main() {
     /* Criar area de memoria compartilhada */
     imagem *img;
     img = (imagem*) mmap(NULL, sizeof(imagem), protection, visibility, 0, 0);
-    *img = abrir_imagem("data/lena.jpg");
+    *img = abrir_imagem_mmap("data/lena.jpg");
 
     pid_t pid[n_processos];
     for (int i=0; i<n_processos; i++) {
         pid[i] = fork();
         if (pid[i]==0) {
             multi_filtro(img, N, i);
-            salvar_imagem("out.jpg", img);
+            exit(0);
         }
     }
 
     for (int i=0; i<n_processos; i++) {
         waitpid(pid[i], NULL, 0);
     }
-    liberar_imagem(img);
+
+    salvar_imagem("out.jpg", img);
+    liberar_imagem_mmap(img);
     return 0;
 }

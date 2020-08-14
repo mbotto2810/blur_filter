@@ -5,6 +5,12 @@
 #include "imageprocessing.h"
 
 #include <FreeImage.h>
+#include <sys/types.h> /* define pid_t */
+#include <sys/wait.h>
+#include <sys/mman.h>
+#include <unistd.h> /* fork() */
+
+
 
 /*
 imagem abrir_imagem(char *nome_do_arquivo);
@@ -13,6 +19,47 @@ void liberar_imagem(imagem *i);
 void filtro(imagem *I, int N);
 void multi_filtro(imagem *I, int N, int n);
 */
+imagem abrir_imagem_mmap(char *nome_do_arquivo) {
+  FIBITMAP *bitmapIn;
+  int x, y;
+  RGBQUAD color;
+  int protection = PROT_READ | PROT_WRITE;
+  int visibility = MAP_SHARED | MAP_ANON;
+
+ imagem I;
+
+  bitmapIn = FreeImage_Load(FIF_JPEG, nome_do_arquivo, 0);
+
+  if (bitmapIn == 0) {
+   // printf("Erro! Nao achei arquivo - %s\n", nome_do_arquivo);
+  } else {
+   // printf("Arquivo lido corretamente!\n");
+   }
+
+  x = FreeImage_GetWidth(bitmapIn);
+  y = FreeImage_GetHeight(bitmapIn);
+
+  I.width = x;
+  I.height = y;
+  I.r = (float *) mmap(NULL,sizeof(float)*x*y,protection,visibility,0,0);
+  I.g = (float *) mmap(NULL,sizeof(float)*x*y,protection,visibility,0,0);
+  I.b = (float *) mmap(NULL,sizeof(float)*x*y,protection,visibility,0,0);
+
+   for (int i=0; i<x; i++) {
+     for (int j=0; j <y; j++) {
+      int idx;
+      FreeImage_GetPixelColor(bitmapIn, i, j, &color);
+
+      idx = i + (j*x);
+
+      I.r[idx] = color.rgbRed;
+      I.g[idx] = color.rgbGreen;
+      I.b[idx] = color.rgbBlue;
+    }
+   }
+  return I;
+
+}
 
 imagem abrir_imagem(char *nome_do_arquivo) {
   FIBITMAP *bitmapIn;
@@ -57,6 +104,12 @@ void liberar_imagem(imagem *I) {
   free(I->r);
   free(I->g);
   free(I->b);
+}
+
+void liberar_imagem_mmap(imagem *I) {
+  munmap(I->r,0);
+  munmap(I->g,0);
+  munmap(I->b,0);
 }
 
 void salvar_imagem(char *nome_do_arquivo, imagem *I) {
