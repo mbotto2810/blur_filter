@@ -29,8 +29,7 @@ the original project assignment in portuguese.
 
 ## Instructions on how to use
 
--
-
+- If you want to run the complete test and just see the pdf run:
 ``````
-sudo rm -rf /
+make test
 ``````
