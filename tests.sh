@@ -4,7 +4,7 @@ make -s threads $1 &> /dev/null
 cp out.jpg data/out.jpg
 rm ./main out.jpg
 
-echo "Beginning The tests for only one line of execution!"
+echo "Beginning the tests for only one line of execution!"
 x=100
 make -s simples $1 >& /dev/null
 while [ $x -gt 0 ]; do
@@ -103,56 +103,56 @@ print STATS_stddev_err'
 
 ##########################################################
 
-echo "Plotando user time"
+echo "Making the user time plot with GNUPlot"
 
 cat doc/simples_raw.txt | grep user: | sed -E 's/user://g' >> doc/user_simples.dat
 cat doc/processos_raw.txt | grep user: | sed -E 's/user://g' >> doc/user_processos.dat
 cat doc/threads_raw.txt | grep user: | sed -E 's/user://g' >> doc/user_threads.dat
 
-gnuplot -p -e 'set title "Plot de user time de uma linha de execucao";
-set xlabel "Tentativa";
-set ylabel "Tempo";
+gnuplot -p -e 'set title "User time plot with only one line of execution";
+set xlabel "tests";
+set ylabel "time in seconds";
 set fit quiet;
 set terminal png;
 set boxwidth 0.5;
 plot "doc/user_simples.dat" with points notitle' >> doc/user_simples.png
 gnuplot -p -e 'set print "doc/user_simples.log";
 stats "doc/user_simples.dat" nooutput;
-print "Media do user time executando em uma linha de execucao:";
+print "Mean of user time with only one line of execution:";
 print STATS_mean;
-print "Desvio padrao do user time executando em uma linha de execucao:";
+print "Standart deviation of user time with only one line of execution:";
 print STATS_stddev_err'
 
 gnuplot -p -e 'set title "Plot de user time de multiprocessos";
-set xlabel "Tentativa";
-set ylabel "Tempo";
+set xlabel "tests";
+set ylabel "time in seconds";
 set fit quiet; set terminal png;
 set boxwidth 0.5;
 plot "doc/user_processos.dat" with points notitle' >> doc/user_processos.png
 gnuplot -p -e 'set print "doc/user_processos.log";
 stats "doc/user_processos.dat" nooutput;
-print "Media do user time executando em multiprocessos:";
+print "Mean of user time in multiprocess:";
 print STATS_mean;
-print "Desvio padrao do user time executando em multiprocessos:";
+print "Standard deviation of user time in multiprocess:";
 print STATS_stddev_err'
 
 gnuplot -p -e 'set title "Plot de user time de multithreads";
-set xlabel "Tentativa";
-set ylabel "Tempo";
+set xlabel "tests";
+set ylabel "time in seconds";
 set fit quiet;
 set terminal png;
 set boxwidth 0.5;
 plot "doc/user_threads.dat" with points notitle' >> doc/user_threads.png
 gnuplot -p -e 'set print "doc/user_threads.log";
 stats "doc/user_threads.dat" nooutput;
-print "Media do user time executando em multithreads:";
+print "Mean of user time in multithreads:";
 print STATS_mean;
-print "Desvio padrao do user time executando em multithreads:";
+print "Standard deviation of user time in multithreads:";
 print STATS_stddev_err'
 
 ##########################################################
 
 pdflatex doc/template.tex &> /dev/null
 rm template.log template.aux
-mv template.pdf resultados.pdf
-xdg-open resultados.pdf
+mv template.pdf final_results.pdf
+xdg-open final_results.pdf
