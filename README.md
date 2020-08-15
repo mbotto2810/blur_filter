@@ -8,8 +8,10 @@ that filter.
 ## Guide on the files
 The _doc_ folder contains the latex template that i used and the intermediate files in obtaining the document.
 The _src_ folder contains all the source code for the blur filter
-The _data_ folder contains all the images. Feel free to add any .jpg image that you want.
-The _parent_ directory contains this file, the Makefile, the test script with /bin/sh environment, a precompiled pdf in my machine if you dont want to run in yours and finally
+The _data_ folder contains all the images. Feel free to add any .jpg image that you want. The out.jpg image there is the final
+result on the image.
+The _parent_ directory contains this file, the Makefile, the test script with /bin/sh environment, a precompiled pdf
+in my machine if you dont want to run in yours and finally
 the original project assignment in portuguese.
 
 
@@ -35,15 +37,25 @@ make test
 ``````
 - If you want to run the complete test as above but choose what image you are testing on type this:
 ``````
-make test img=**image path**
+make test img=<image path>
 ``````
 - If you want to run a specific test on one approach type one of these:
 ``````
 make simple
 make process
-make threas
+make thread
 ``````
-- If you want to run the complete test and just see the pdf type this:
+- If you want to run a specific test on one approach and choose the image type one of these:
 ``````
-make test
+make simple img=<image path>
+make process img=<image path>
+make thread img=<image path>
+``````
+- If you want to clear the executable ./main and the output file type this:
+``````
+make clear
+``````
+- If you want to clear all the intermediate files on the process of building the document type this:
+``````
+make rm
 ``````
