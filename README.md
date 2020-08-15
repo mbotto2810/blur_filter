@@ -29,7 +29,21 @@ the original project assignment in portuguese.
 
 ## Instructions on how to use
 
-- If you want to run the complete test and just see the pdf run:
+- If you want to run the complete test and just see the pdf type this:
+``````
+make test
+``````
+- If you want to run the complete test as above but choose what image you are testing on type this:
+``````
+make test img=**image path**
+``````
+- If you want to run a specific test on one approach type one of these:
+``````
+make simple
+make process
+make threas
+``````
+- If you want to run the complete test and just see the pdf type this:
 ``````
 make test
 ``````
