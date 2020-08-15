@@ -1,9 +1,10 @@
-\title{Trabalho 2 de EA876 - Blur filter}
+\title{Mean Blur Filter Homework Assignment}
 \author{
         Maruan Bakri Ottoni \\
-                FEEC\\
+        RA: 222025\\
+        FEEC\\
         UNICAMP\\
-        Campinas, \underline{Brasil}
+        Campinas, \underline{Brazil}
 }
 \date{\today}
 \documentclass[12pt]{article}
@@ -25,9 +26,16 @@
 \begin{document}
 \maketitle
 
-\section{Resultados}
+\begin{abstract}
+    Here on this homework assignment the mainline of work was to test three different approaches in trying to implement a median
+    blur filter: Only one line of execution of the main program, Multithread and Multiprocess. I tested a hundred times each one of those
+    alternatives and the result was that the user time of a multiprocess solution was in general, faster. In the case of real time the multithread and
+    the multiprocess where equally good with a slight improve in performance in the multhread approach.
+\end{abstarct}
+
+\section{Images and the Final Result}
      \begin{figure}[H]
-        \caption{Imagem Original.}
+         \caption{Original image (Here will always appear the lena image. If you find necessary to change it, you have to modify the template.tex file).}
         \centering
         \includegraphics[width=8cm]{data/lena.jpg}
     \end{figure}
@@ -36,46 +44,23 @@
         \centering
         \includegraphics[width=8cm]{data/out.jpg}
     \end{figure}
-
-\section{Sys Time}
-    \begin{figure}[H]
-        \caption{Grafico de sys time para uma linha de execucao.}
-        \centering
-        \includegraphics[width=8cm]{doc/sys_simples.png}
-    \end{figure}
-    \VerbatimInput{doc/sys_simples.log}
-
-    \begin{figure}[H]
-        \caption{Grafico de sys time para multiprocess.}
-        \centering
-        \includegraphics[width=8cm]{doc/sys_processos.png}
-    \end{figure}
-    \VerbatimInput{doc/sys_processos.log}
-
-    \begin{figure}[H]
-        \caption{Grafico de sys time para multithread.}
-        \centering
-        \includegraphics[width=8cm]{doc/sys_threads.png}
-    \end{figure}
-    \VerbatimInput{doc/sys_threads.log}
-
 \section{User time}
     \begin{figure}[H]
-        \caption{Grafico de user time para uma linha de execucao.}
+        \caption{User time graphic with only one line of execution.}
         \centering
         \includegraphics[width=8cm]{doc/user_simples.png}
     \end{figure}
     \VerbatimInput{doc/user_simples.log}
 
     \begin{figure}[H]
-        \caption{Grafico de user time para multiprocess.}
+        \caption{User time graphic for a multiprocess approach.}
         \centering
         \includegraphics[width=8cm]{doc/user_processos.png}
     \end{figure}
     \VerbatimInput{doc/user_processos.log}
 
     \begin{figure}[H]
-        \caption{Grafico de user time para multithread.}
+        \caption{User time graphic for a multithread approach.}
         \centering
         \includegraphics[width=8cm]{doc/user_threads.png}
     \end{figure}
@@ -84,24 +69,30 @@
 
 \section{Real Time}\label{results}
     \begin{figure}[H]
-        \caption{Grafico de real time para uma linha de execucao.}
+        \caption{Real time graphic for only one main line of execution.}
         \centering
         \includegraphics[width=8cm]{doc/real_simples.png}
     \end{figure}
     \VerbatimInput{doc/real_simples.log}
 
     \begin{figure}[H]
-        \caption{Grafico de real time para multiprocess.}
+        \caption{Real Time grpahic for a multiprocess approach.}
         \centering
         \includegraphics[width=8cm]{doc/real_processos.png}
     \end{figure}
     \VerbatimInput{doc/real_processos.log}
 
     \begin{figure}[H]
-        \caption{Grafico de real time para multithread.}
+        \caption{Multithread real time graphic.}
         \centering
         \includegraphics[width=8cm]{doc/real_threads.png}
     \end{figure}
     \VerbatimInput{doc/real_threads.log}
+
+\section{Observation on the Real and User Time:}
+\subsection{User Time}
+User time is the amount of CPU time spent in user-mode code (outside the kernel) within the process. This is only actual CPU time used in executing the process. Other processes and time the process spends blocked do not count towards this figure.
+\subsection{Real Time}
+Real time is wall clock time - time from start to finish of the call. This is all elapsed time including time slices used by other processes and time the process spends blocked (for example ifit is waiting for I/O to complete).
 
 \end{document}

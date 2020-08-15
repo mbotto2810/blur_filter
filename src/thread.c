@@ -1,6 +1,7 @@
 
 #include "imageprocessing.h"
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <time.h>
 #include <sys/time.h>
@@ -18,7 +19,18 @@ void* filtro_thread(void *arg) {
     return NULL;
 }
 
-int main() {
+int main(int argc, int **argv) {
+    char IMG[100];
+    if (argv[1]==NULL) {
+        strcpy(IMG,"data/lena.jpg");
+    }
+    else {
+        strcpy(IMG,argv[1]);
+    }
+
+
+
+
   clock_t ct0, ct1, dct; /* Medida de tempo baseada no clock da CPU */
   struct timeval rt0, rt1, drt; /* Tempo baseada em tempo real */
   void *P;
@@ -33,7 +45,7 @@ int main() {
     pthread_t threads[n_threads];
     int threads_id[n_threads];
 
-    img = abrir_imagem("data/lena.jpg");
+    img = abrir_imagem(IMG);
 
     //Identifica threads
     for (int j=0 ; j<n_threads ; j++) {
@@ -60,8 +72,10 @@ int main() {
 
   timersub(&rt1, &rt0, &drt);
 
-  printf("Tempo real: %ld.%06ld segundos\n", drt.tv_sec, drt.tv_usec);
-  printf("Tempo user: %f segundos\n", (double)(ct1-ct0)/CLOCKS_PER_SEC);
+    printf("real: %ld.%06ld \n", drt.tv_sec, drt.tv_usec);
+    printf("user: %f \n", (double)(ct1-ct0)/CLOCKS_PER_SEC);
+    printf("\n");
+
 
 
 

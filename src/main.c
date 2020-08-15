@@ -1,13 +1,21 @@
 
 #include <time.h>
 #include <sys/time.h>
+#include <string.h>
 #include <stdio.h>
 #include "imageprocessing.h"
 #include "cronometro.h"
 #define N 10
 
-int main() {
+int main(int argc, char **argv) {
 
+  char IMG[100];
+  if (argv[1]==NULL) {
+      strcpy(IMG,"data/lena.jpg");
+  }
+  else {
+      strcpy(IMG,argv[1]);
+  }
 
   clock_t ct0, ct1, dct; /* Medida de tempo baseada no clock da CPU */
   struct timeval rt0, rt1, drt; /* Tempo baseada em tempo real */
@@ -20,7 +28,7 @@ int main() {
 
 
   imagem img;
-  img = abrir_imagem("data/lena.jpg");
+  img = abrir_imagem(IMG);
   filtro(&img, N);
   salvar_imagem("out.jpg", &img);
   liberar_imagem(&img);

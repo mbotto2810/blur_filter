@@ -1,24 +1,42 @@
 #Makefile
+
+# Macros para compilacao
+CC = gcc
+DIR = src
+TARGET = ./main
+
+# Macros para teste
+BASH = sh
+TEST_SCRIPT = ./tests.sh
+VERBOSE ?= 1
+
+# Macros para construcao do zip
+ZIP = zip
+USERNAME = maruan_trabalho2_222025
+ZIPFILE = $(USERNAME).zip
+
+
+
 simples:
-	gcc -omain src/main.c src/imageprocessing.c -I./ -lfreeimage
-	./main
+	$(CC) -o main $(DIR)/main.c $(DIR)/imageprocessing.c -I./ -lfreeimage
+	$(TARGET) $(img) &> /dev/null
 	#xdg-open out.jpg
 	#xdg-open data/lena.jpg
 
 process:
-	gcc -omain src/process.c src/imageprocessing.c -I./ -lfreeimage
-	./main
-	xdg-open out.jpg
-	xdg-open data/lena.jpg
+	$(CC) -o main $(DIR)/process.c $(DIR)/imageprocessing.c -I./ -lfreeimage
+	$(TARGET) $(img) &> /dev/null
+	#xdg-open out.jpg
+	#xdg-open data/lena.jpg
 
 threads:
-	gcc -lpthread -omain src/thread.c src/imageprocessing.c -I./ -lfreeimage
-	./main
+	$(CC) -lpthread -o main $(DIR)/thread.c $(DIR)/imageprocessing.c -I./ -lfreeimage
+	$(TARGET) $(img) &> /dev/null
 	#xdg-open out.jpg
 	#xdg-open data/lena.jpg
 
 test:
-	./tests.sh
+	$(TEST_SCRIPT) $(img)
 
 git:
 	git commit -am 'auto'
@@ -31,3 +49,6 @@ clear:
 rm:
 	rm doc/*.png doc/*.txt doc/*.dat doc/*.log
 	rm data/out.jpg
+
+zip:
+	$(ZIP) $(ZIPFILE) ./*

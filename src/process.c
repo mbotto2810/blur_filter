@@ -1,5 +1,6 @@
 
 #include "imageprocessing.h"
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h> /* exit() */
 #include <sys/time.h>
@@ -12,7 +13,17 @@
 #define N 10
 #define n_processos 3
 
-int main() {
+int main(int argc, char **argv) {
+
+  char IMG[100];
+  if (argv[1]==NULL) {
+      strcpy(IMG,"data/lena.jpg");
+  }
+  else {
+    strcpy(IMG,argv[1]);
+  }
+
+
 
 
 
@@ -29,7 +40,7 @@ int main() {
     /* Criar area de memoria compartilhada */
     imagem *img;
     img = (imagem*) mmap(NULL, sizeof(imagem), protection, visibility, 0, 0);
-    *img = abrir_imagem_mmap("data/lena.jpg");
+    *img = abrir_imagem_mmap(IMG);
 
     pid_t pid[n_processos];
     for (int i=0; i<n_processos; i++) {
