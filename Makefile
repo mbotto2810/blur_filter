@@ -1,23 +1,23 @@
 #Makefile
 
-# Macros para compilacao
+# Compilation macros
 CC = gcc
 DIR = src
 TARGET = ./main
 
-# Macros para teste
+# Tests macros
 BASH = sh
 TEST_SCRIPT = ./tests.sh
 VERBOSE ?= 1
 
-# Macros para construcao do zip
+# Zip file macros
 ZIP = zip
 USERNAME = maruan_trabalho2_222025
 ZIPFILE = $(USERNAME).zip
 
 
 
-simples:
+simple:
 	$(CC) -o main $(DIR)/main.c $(DIR)/imageprocessing.c -I./ -lfreeimage
 	$(TARGET) $(img) &> /dev/null
 	#xdg-open out.jpg

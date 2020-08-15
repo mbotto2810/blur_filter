@@ -1,9 +1,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-
 #include "imageprocessing.h"
-
 #include <FreeImage.h>
 #include <sys/types.h> /* define pid_t */
 #include <sys/wait.h>
@@ -11,41 +9,33 @@
 #include <unistd.h> /* fork() */
 
 
-
-/*
-imagem abrir_imagem(char *nome_do_arquivo);
-void salvar_imagem(char *nome_do_arquivo, imagem *I);
-void liberar_imagem(imagem *i);
-void filtro(imagem *I, int N);
-void multi_filtro(imagem *I, int N, int n);
-*/
 imagem abrir_imagem_mmap(char *nome_do_arquivo) {
-  FIBITMAP *bitmapIn;
-  int x, y;
-  RGBQUAD color;
-  int protection = PROT_READ | PROT_WRITE;
-  int visibility = MAP_SHARED | MAP_ANON;
+    FIBITMAP *bitmapIn;
+    int x, y;
+    RGBQUAD color;
+    int protection = PROT_READ | PROT_WRITE;
+    int visibility = MAP_SHARED | MAP_ANON;
 
- imagem I;
+    imagem I;
 
-  bitmapIn = FreeImage_Load(FIF_JPEG, nome_do_arquivo, 0);
+    bitmapIn = FreeImage_Load(FIF_JPEG, nome_do_arquivo, 0);
 
-  if (bitmapIn == 0) {
-   // printf("Erro! Nao achei arquivo - %s\n", nome_do_arquivo);
-  } else {
-   // printf("Arquivo lido corretamente!\n");
-   }
+    if (bitmapIn == 0) {
+    // printf("Erro! Nao achei arquivo - %s\n", nome_do_arquivo);
+    } else {
+    // printf("Arquivo lido corretamente!\n");
+    }
 
-  x = FreeImage_GetWidth(bitmapIn);
-  y = FreeImage_GetHeight(bitmapIn);
+    x = FreeImage_GetWidth(bitmapIn);
+    y = FreeImage_GetHeight(bitmapIn);
 
-  I.width = x;
-  I.height = y;
-  I.r = (float *) mmap(NULL,sizeof(float)*x*y,protection,visibility,0,0);
-  I.g = (float *) mmap(NULL,sizeof(float)*x*y,protection,visibility,0,0);
-  I.b = (float *) mmap(NULL,sizeof(float)*x*y,protection,visibility,0,0);
+    I.width = x;
+    I.height = y;
+    I.r = (float *) mmap(NULL,sizeof(float)*x*y,protection,visibility,0,0);
+    I.g = (float *) mmap(NULL,sizeof(float)*x*y,protection,visibility,0,0);
+    I.b = (float *) mmap(NULL,sizeof(float)*x*y,protection,visibility,0,0);
 
-   for (int i=0; i<x; i++) {
+    for (int i=0; i<x; i++) {
      for (int j=0; j <y; j++) {
       int idx;
       FreeImage_GetPixelColor(bitmapIn, i, j, &color);
@@ -56,35 +46,35 @@ imagem abrir_imagem_mmap(char *nome_do_arquivo) {
       I.g[idx] = color.rgbGreen;
       I.b[idx] = color.rgbBlue;
     }
-   }
-  return I;
+    }
+    return I;
 
 }
 
 imagem abrir_imagem(char *nome_do_arquivo) {
-  FIBITMAP *bitmapIn;
-  int x, y;
-  RGBQUAD color;
-  imagem I;
+    FIBITMAP *bitmapIn;
+    int x, y;
+    RGBQUAD color;
+    imagem I;
 
-  bitmapIn = FreeImage_Load(FIF_JPEG, nome_do_arquivo, 0);
+    bitmapIn = FreeImage_Load(FIF_JPEG, nome_do_arquivo, 0);
 
-  if (bitmapIn == 0) {
-   // printf("Erro! Nao achei arquivo - %s\n", nome_do_arquivo);
-  } else {
-   // printf("Arquivo lido corretamente!\n");
-   }
+    if (bitmapIn == 0) {
+    // printf("Erro! Nao achei arquivo - %s\n", nome_do_arquivo);
+    } else {
+    // printf("Arquivo lido corretamente!\n");
+    }
 
-  x = FreeImage_GetWidth(bitmapIn);
-  y = FreeImage_GetHeight(bitmapIn);
+    x = FreeImage_GetWidth(bitmapIn);
+    y = FreeImage_GetHeight(bitmapIn);
 
-  I.width = x;
-  I.height = y;
-  I.r = malloc(sizeof(float) * x * y);
-  I.g = malloc(sizeof(float) * x * y);
-  I.b = malloc(sizeof(float) * x * y);
+    I.width = x;
+    I.height = y;
+    I.r = malloc(sizeof(float) * x * y);
+    I.g = malloc(sizeof(float) * x * y);
+    I.b = malloc(sizeof(float) * x * y);
 
-   for (int i=0; i<x; i++) {
+    for (int i=0; i<x; i++) {
      for (int j=0; j <y; j++) {
       int idx;
       FreeImage_GetPixelColor(bitmapIn, i, j, &color);
@@ -95,31 +85,31 @@ imagem abrir_imagem(char *nome_do_arquivo) {
       I.g[idx] = color.rgbGreen;
       I.b[idx] = color.rgbBlue;
     }
-   }
-  return I;
+    }
+    return I;
 
 }
 
 void liberar_imagem(imagem *I) {
-  free(I->r);
-  free(I->g);
-  free(I->b);
+    free(I->r);
+    free(I->g);
+    free(I->b);
 }
 
 void liberar_imagem_mmap(imagem *I) {
-  munmap(I->r,0);
-  munmap(I->g,0);
-  munmap(I->b,0);
+    munmap(I->r,0);
+    munmap(I->g,0);
+    munmap(I->b,0);
 }
 
 void salvar_imagem(char *nome_do_arquivo, imagem *I) {
-  FIBITMAP *bitmapOut;
-  RGBQUAD color;
+    FIBITMAP *bitmapOut;
+    RGBQUAD color;
 
-  //printf("Salvando imagem %d por %d...\n", I->width, I->height);
-  bitmapOut = FreeImage_Allocate(I->width, I->height, 24, 0, 0, 0);
+    //printf("Salvando imagem %d por %d...\n", I->width, I->height);
+    bitmapOut = FreeImage_Allocate(I->width, I->height, 24, 0, 0, 0);
 
-   for (int i=0; i<I->width; i++) {
+    for (int i=0; i<I->width; i++) {
      for (int j=0; j<I->height; j++) {
       int idx;
 
@@ -130,9 +120,9 @@ void salvar_imagem(char *nome_do_arquivo, imagem *I) {
 
       FreeImage_SetPixelColor(bitmapOut, i, j, &color);
     }
-  }
+    }
 
-  FreeImage_Save(FIF_JPEG, bitmapOut, nome_do_arquivo, JPEG_DEFAULT);
+    FreeImage_Save(FIF_JPEG, bitmapOut, nome_do_arquivo, JPEG_DEFAULT);
 }
 
 

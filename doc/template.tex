@@ -30,8 +30,8 @@
     Here on this homework assignment the mainline of work was to test three different approaches in trying to implement a median
     blur filter: Only one line of execution of the main program, Multithread and Multiprocess. I tested a hundred times each one of those
     alternatives and the result was that the user time of a multiprocess solution was in general, faster. In the case of real time the multithread and
-    the multiprocess where equally good with a slight improve in performance in the multhread approach.
-\end{abstarct}
+    the multiprocess where equally good with a slight improvement in performance on the multhread approach.
+\end{abstract}
 
 \section{Images and the Final Result}
      \begin{figure}[H]
@@ -76,7 +76,7 @@
     \VerbatimInput{doc/real_simples.log}
 
     \begin{figure}[H]
-        \caption{Real Time grpahic for a multiprocess approach.}
+        \caption{Real time graphic for a multiprocess approach.}
         \centering
         \includegraphics[width=8cm]{doc/real_processos.png}
     \end{figure}
@@ -93,6 +93,6 @@
 \subsection{User Time}
 User time is the amount of CPU time spent in user-mode code (outside the kernel) within the process. This is only actual CPU time used in executing the process. Other processes and time the process spends blocked do not count towards this figure.
 \subsection{Real Time}
-Real time is wall clock time - time from start to finish of the call. This is all elapsed time including time slices used by other processes and time the process spends blocked (for example ifit is waiting for I/O to complete).
+Real time is wall clock time - time from start to finish of the call. This is all elapsed time including time slices used by other processes and time the process spends blocked.
 
 \end{document}

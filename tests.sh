@@ -6,11 +6,11 @@ rm ./main out.jpg
 
 echo "Beginning the tests for only one line of execution!"
 x=100
-make -s simples $1 >& /dev/null
+make -s simple $1 >& /dev/null
 while [ $x -gt 0 ]; do
-    echo "only $x tests remaining!"
+    echo "Only $x tests remaining!"
     echo "Patience is a virtue!"
-    #/usr/bin/time -a -o doc/simples_raw.txt -p make -s simples
+    #/usr/bin/time -a -o doc/simples_raw.txt -p make -s simple
     #echo "" >> doc/simples_raw.txt
     #make -s clear
     ./main $1 >> doc/simples_raw.txt
@@ -68,7 +68,7 @@ set boxwidth 0.5;
 plot "doc/real_simples.dat" with points notitle' >> doc/real_simples.png
 gnuplot -p -e 'set print "doc/real_simples.log";
 stats "doc/real_simples.dat" nooutput;
-print "Mean of real time with only one line of execution:";
+print "Mean time of real time with only one line of execution:";
 print STATS_mean;
 print "Standard deviation of real time with only one line of execution:";
 print STATS_stddev_err'
@@ -82,7 +82,7 @@ set boxwidth 0.5;
 plot "doc/real_processos.dat" with points notitle' >> doc/real_processos.png
 gnuplot -p -e 'set print "doc/real_processos.log";
 stats "doc/real_processos.dat" nooutput;
-print "Mean of real time with multiprocess:";
+print "Mean time of real time with multiprocess:";
 print STATS_mean;
 print "Standard deviation of real time with multiprocess:";
 print STATS_stddev_err'
@@ -96,7 +96,7 @@ set boxwidth 0.5;
 plot "doc/real_threads.dat" with points notitle' >> doc/real_threads.png
 gnuplot -p -e 'set print "doc/real_threads.log";
 stats "doc/real_threads.dat" nooutput;
-print "Mean of real time with multithreads:";
+print "Mean time of real time with multithreads:";
 print STATS_mean;
 print "Standard deviation of real time in multithreads:";
 print STATS_stddev_err'
@@ -118,7 +118,7 @@ set boxwidth 0.5;
 plot "doc/user_simples.dat" with points notitle' >> doc/user_simples.png
 gnuplot -p -e 'set print "doc/user_simples.log";
 stats "doc/user_simples.dat" nooutput;
-print "Mean of user time with only one line of execution:";
+print "Mean time of user time with only one line of execution:";
 print STATS_mean;
 print "Standart deviation of user time with only one line of execution:";
 print STATS_stddev_err'
@@ -131,7 +131,7 @@ set boxwidth 0.5;
 plot "doc/user_processos.dat" with points notitle' >> doc/user_processos.png
 gnuplot -p -e 'set print "doc/user_processos.log";
 stats "doc/user_processos.dat" nooutput;
-print "Mean of user time in multiprocess:";
+print "Mean time of user time in multiprocess:";
 print STATS_mean;
 print "Standard deviation of user time in multiprocess:";
 print STATS_stddev_err'
@@ -145,7 +145,7 @@ set boxwidth 0.5;
 plot "doc/user_threads.dat" with points notitle' >> doc/user_threads.png
 gnuplot -p -e 'set print "doc/user_threads.log";
 stats "doc/user_threads.dat" nooutput;
-print "Mean of user time in multithreads:";
+print "Mean time of user time in multithreads:";
 print STATS_mean;
 print "Standard deviation of user time in multithreads:";
 print STATS_stddev_err'
