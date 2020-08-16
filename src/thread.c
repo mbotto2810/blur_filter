@@ -19,7 +19,7 @@ void* filtro_thread(void *arg) {
     return NULL;
 }
 
-int main(int argc, int **argv) {
+int main(int argc, char **argv) {
     char IMG[100];
     if (argv[1]==NULL) {
         strcpy(IMG,"data/lena.jpg");

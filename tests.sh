@@ -1,5 +1,6 @@
 #!/bin/sh
 
+#
 make -s threads $1 &> /dev/null
 cp out.jpg data/out.jpg
 rm ./main out.jpg

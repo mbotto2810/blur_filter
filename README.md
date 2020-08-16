@@ -1,4 +1,4 @@
-# Mean blur filter implemented on C with the purpose of obtaining knowledge
+# Median blur filter implemented on C with the purpose of obtaining knowledge
 
 This repository was made for a homework assignment in the course EA876 - Software
 Introduction at Unicamp. The main purpose of the code here is to compare different
@@ -23,6 +23,7 @@ the original project assignment in portuguese.
 - For the plots I used GNUPlot
 - I opened the images and the pdf with **xdg-open** so you have to have a preferred application on your computer
 - Obviously you must have GNU core-utils (make,gcc,...)
+- The image must be on **jpg** format
 - I compiled the final document with **PdfLatex** using the following packages:
   1. float
   2. fancyvrb
@@ -30,6 +31,7 @@ the original project assignment in portuguese.
   4. dvispname
 
 ## Instructions on how to use
+Remember that the default image is lena.jpg but feel free to change to any foobar.jpg on your computer.
 
 - If you want to run the complete test and just see the PDF result type this:
 ``````
@@ -39,6 +41,7 @@ make test
 ``````
 make test img=<image path>
 ``````
+One example is _img=~/Pictures/foobar.jpg_ or _img=data/foobar.jpg_
 - If you want to run a specific test on one approach type one of these:
 ``````
 make simple
