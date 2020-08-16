@@ -7,11 +7,12 @@ and i chose that filter.
 
 ## Guide on the files
 The _doc_ folder contains the latex template that i used and the intermediate
-files in obtaining the document. The _src_ folder contains all the source code
-for the blur filter. The _data_ folder contains all the images. Feel free to add
-any .jpg image that you want. The out.jpg image on the parent directory is the final result
-of the filter after running the program. The default image that i am testing on is lena.jpg.
-The _parent_ directory contains this file, the Makefile, the test script with /bin/sh environment, a
+files in obtaining the document after running. The _src_ folder contains all the source code
+for the blur filter. The source code are the libraries and one main.c file to implement the blur filter
+with one line of execution, one in multiprocess (process.c) and one in multithreads (thread.c). The _data_
+folder contains all the images. Feel free to add any .jpg image that you want. The out.jpg image on
+the parent directory is the final result of the filter after running the program. The default image that i am testing on is lena.jpg.
+The _parent_ directory contains this file, the Makefile, the test script with #!/bin/sh environment, a
 precompiled pdf in my machine (if you dont want to run in yours) and finally
 the original project assignment in portuguese.
 
