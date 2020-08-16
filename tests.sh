@@ -1,9 +1,16 @@
 #!/bin/sh
 
-#
+##########################################################
+
+# Here i will generate the out.jpg to append on the document
+
 make -s threads $1 &> /dev/null
 cp out.jpg data/out.jpg
 rm ./main out.jpg
+
+##########################################################
+
+# Testing for every alternative 100 times and putting the results on 3 different txt files.
 
 echo "Beginning the tests for only one line of execution!"
 x=100
@@ -53,6 +60,8 @@ make -s clear >& /dev/null
 
 
 ##########################################################
+
+# Here i filter the raw result of real time with sed and grep to use gnuplot
 
 echo "Making the real time plot with GNUPlot"
 
@@ -104,6 +113,8 @@ print STATS_stddev_err'
 
 ##########################################################
 
+# Here i filter the raw result of user time with sed and grep to use gnuplot
+
 echo "Making the user time plot with GNUPlot"
 
 cat doc/simples_raw.txt | grep user: | sed -E 's/user://g' >> doc/user_simples.dat
@@ -152,6 +163,8 @@ print "Standard deviation of user time in multithreads:";
 print STATS_stddev_err'
 
 ##########################################################
+
+# Finally the document is compiled
 
 pdflatex doc/template.tex &> /dev/null
 rm template.log template.aux

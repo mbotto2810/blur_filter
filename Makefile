@@ -1,4 +1,4 @@
-#Makefile
+# Makefile
 
 # Compilation macros
 CC = gcc
