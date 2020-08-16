@@ -22,6 +22,7 @@ the original project assignment in portuguese.
 - This repository was made on a **Linux** machine and was not tested on **Windows** nor **MacOS**
 - You have to run this repository on a desktop, not on a server, because you have to view the image and the pdf document
 - For the plots I used GNUPlot
+- Free image library
 - I opened the images and the pdf with **xdg-open** so you have to have a preferred application on your computer
 - Obviously you must have GNU core-utils (make,gcc,...)
 - The image must be on **jpg** format
