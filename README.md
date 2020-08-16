@@ -42,13 +42,13 @@ make test
 make test img=<image path>
 ``````
 One example is _img=~/Pictures/foobar.jpg_ or _img=data/foobar.jpg_
-- If you want to run a specific test on one approach type one of these:
+- If you want to run one specific test on one approach type one of these:
 ``````
 make simple
 make process
 make thread
 ``````
-- If you want to run a specific test on one approach and choose the image type one of these:
+- If you want to run one specific test on one approach and choose the image file type one of these:
 ``````
 make simple img=<image path>
 make process img=<image path>
