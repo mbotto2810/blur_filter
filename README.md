@@ -9,8 +9,8 @@ and i chose that filter.
 The _doc_ folder contains the latex template that i used and the intermediate
 files in obtaining the document. The _src_ folder contains all the source code
 for the blur filter. The _data_ folder contains all the images. Feel free to add
-any .jpg image that you want. The out.jpg image there is the final result on the
-image. The default image that i am testing on is lena.jpg. The _parent_ directory
+any .jpg image that you want. The out.jpg image on the parent directory is the final result
+of the filter. The default image that i am testing on is lena.jpg. The _parent_ directory
 contains this file, the Makefile, the test script with /bin/sh environment, a
 precompiled pdf in my machine if you dont want to run in yours and finally
 the original project assignment in portuguese.
